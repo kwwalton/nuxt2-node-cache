@@ -21,20 +21,13 @@ cacheProvider.start(function (err) {
 const CACHE_DURATION = 600
 const CACHE_KEY = 'CACHE_KEY'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.get('/', (req, res) => {
-  res.send('api root level')
-})
-
+// Return a string
 app.get('/hello', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/morning', (req, res) => {
-  res.send('Good morning!')
-})
-
-app.get('/todos', async (req, res) => {
+// Return a response object
+app.get('/not-cached', async (req, res) => {
   try {
     const response = await axios.get(
       'https://jsonplaceholder.typicode.com/todos/1'
@@ -45,6 +38,7 @@ app.get('/todos', async (req, res) => {
   }
 })
 
+// Return a cached response object
 app.get('/cached', async (req, res) => {
   const value = cacheProvider.instance().get(CACHE_KEY)
   if (!value) {

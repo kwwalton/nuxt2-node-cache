@@ -37,7 +37,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-  //
+  // Demonstrates a few ways of reaching endpoints on the server:
   serverMiddleware: [
     '~/server-middleware/test',
     {
